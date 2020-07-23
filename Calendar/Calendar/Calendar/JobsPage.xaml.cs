@@ -29,6 +29,11 @@ namespace Calendar
             });
         }
 
+        async void OnSettingsClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SettingsPage { });
+        }
+
         async void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem != null)

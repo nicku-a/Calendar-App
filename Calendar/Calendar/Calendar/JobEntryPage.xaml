@@ -29,8 +29,9 @@
         <DatePicker x:Name="DateDeadlinePicker"
                     Format="dd MM yyyy"
                     Margin="30, 0, 0, 30"
-                    MinimumDate="07/23/2020"
                     Date="{Binding DateDeadline}"/>
+                    <!--MinimumDate="07/23/2020"-->
+            
         
         <TimePicker x:Name="DurationPicker"
                     Format="HH:mm"

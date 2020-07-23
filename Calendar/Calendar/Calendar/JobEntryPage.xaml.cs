@@ -14,6 +14,16 @@ namespace Calendar
             InitializeComponent();
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (DateDeadlinePicker.Date < DateTime.Now)
+            {
+                DateDeadlinePicker.Date = DateTime.Now;
+            }
+        }
+
         void OnLowButtonClicked(object sender, EventArgs e)
         {
             var job = (Job)BindingContext;
