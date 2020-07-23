@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
              x:Class="Calendar.JobEntryPage"
-             Title="Job Entry">
+             Title="New Task">
     <ContentPage.Resources>
         <!-- Implicit styles -->
         <Style TargetType="{x:Type Editor}">
@@ -22,16 +23,63 @@
 
     <StackLayout Margin="{StaticResource PageMargin}">
         <Editor Placeholder="Enter your task"
-                Text="{Binding Text}"
+                Text="{Binding Name}"
                 HeightRequest="100" />
+        
+        <DatePicker x:Name="DateDeadlinePicker"
+                    Format="dd MM yyyy"
+                    Margin="30, 0, 0, 30"
+                    MinimumDate="07/23/2020"
+                    Date="{Binding DateDeadline}"/>
+        
+        <TimePicker x:Name="DurationPicker"
+                    Format="HH:mm"
+                    Margin="30, 0, 0, 30"
+                    Time="{Binding TaskDuration}"/>
+
         <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Text="Priority:"
+                   FontSize="Medium">                
+            </Label>
+            <Button Grid.Row="1"
+                    Text="Low"
+                    Clicked="OnLowButtonClicked" />
+            <Button Grid.Row="1"
+                    Grid.Column="1"
+                    Text="Medium"
+                    Clicked="OnMediumButtonClicked" />
+            <Button Grid.Row="1"
+                    Grid.Column="2"
+                    Text="High"
+                    Clicked="OnHighButtonClicked" />
+        </Grid>
+
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Button Text="Save"
+                    Grid.Row="1"
+                    VerticalOptions="End"
                     Clicked="OnSaveButtonClicked" />
             <Button Grid.Column="1"
+                    Grid.Row="1"
+                    VerticalOptions="End"
                     Text="Delete"
                     Clicked="OnDeleteButtonClicked" />
         </Grid>
